@@ -5,3 +5,5 @@ serverApp = FastAPI(version="0.0.0.1", description="this is just a sample server
 @serverApp.get("/{item}")
 def homeRoute(item: int):
     return {"status":"this serverApp is ready to go!", "number": item}
+
+print("okay sir")
