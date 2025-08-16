@@ -1,1 +1,10 @@
-ver
+version: '3.9'
+
+services:
+  batalion:
+    build: .
+    container_name: batalion
+    ports:
+      - 9000:9000
+    restart: always
+
