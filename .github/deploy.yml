@@ -17,19 +17,19 @@ jobs:
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_PUBLIC_IP }}
-          username: ${{ secrets.EC2_USERNAME }}
+          username: ${{ secrets.HOST }}
           key: ${{ secrets.EC2_PEM }}
           port: 22
           source: .
-          target: "/home/${{ secrets.EC2_USERNAME }}/practice"
+          target: "/home/${{ secrets.HOST }}/practice"
 
       - name: Deploy with Docker Compose
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.EC2_PUBLIC_IP }}
-          username: ${{ secrets.EC2_USERNAME }}
+          username: ${{ secrets.HOST }}
           key: ${{ secrets.EC2_PEM }}
           port: 22
           script: |
-            cd /home/${{ secrets.EC2_USERNAME }}/practice
+            cd /home/${{ secrets.HOST }}/practice
             docker-compose up -d --build --remove-orphans
