@@ -23,7 +23,6 @@ jobs:
           source: .
           target: "/home/${{ secrets.EC2_USERNAME }}/practice"
 
-      # SSH into EC2 and deploy with Docker Compose
       - name: Deploy with Docker Compose
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -32,5 +31,5 @@ jobs:
           key: ${{ secrets.EC2_PEM }}
           port: 22
           script: |
-            cd /home/${{ secrets.EC2_USERNAME }}/resources/so_email
+            cd /home/${{ secrets.EC2_USERNAME }}/practice
             docker-compose up -d --build --remove-orphans
