@@ -32,5 +32,11 @@ jobs:
           port: 22
           script: |
             cd /home/${{ secrets.EC2_USERNAME }}/practice
-            docker compose down
+            # Force stop and remove all containers for this project
+            docker compose down --remove-orphans --volumes
+            # Remove any lingering containers with the same name (failsafe)
+            docker container rm -f batalion 2>/dev/null || true
+            # Clean up unused images to free space
+            docker image prune -f
+            # Start fresh containers
             docker compose up -d --build --remove-orphans
